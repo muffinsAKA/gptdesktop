@@ -5,18 +5,18 @@ const fs = require('fs');
 let mainWindow;
 let tray;
 
-// Get the path to the 'api.cfg' file relative to the executable file
-const configFile = path.join(__dirname, 'api.cfg');
+const filePath = path.resolve(path.dirname(app.getPath('exe')), 'api.cfg');
 
 // Handle IPC message from renderer process
-ipcMain.on('loadConfig', (event) => {
+ipcMain.on('loadConfig', (event) => { // Remove the filePath parameter
   try {
-    const fileContents = fs.readFileSync(configFile, 'utf-8');
+    const fileContents = fs.readFileSync(filePath, 'utf-8'); // Use the outer filePath variable
     event.reply('configLoaded', fileContents);
   } catch (error) {
     event.reply('configError', error.message);
   }
 });
+
 function createWindow() {
   mainWindow = new BrowserWindow({
     icon: './gpt.ico',

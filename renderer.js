@@ -7,26 +7,19 @@ window.addEventListener('DOMContentLoaded', () => {
   // Use the exposed `api` object to send and receive messages
   const { send, receive } = window.api;
 
-  // Disable the input box until the API key is loaded
-  inputBox.disabled = true;
+// Send message to main process to load config file
+send('loadConfig');
 
-  // Send message to main process to load the config
-  send('loadConfig');
-
-  // Receive the config file contents from the main process
-  receive('configLoaded', (fileContents) => {
-    // Do something with the file contents
-    gptKey = fileContents;
-    console.log("Config loaded:", gptKey);
-
-    // Enable the input box now that the API key is loaded
-    inputBox.disabled = false;
-  });
+// Receive the config file contents from the main process
+receive('configLoaded', (fileContents) => {
+  gptKey = fileContents;
+  console.log("API key loaded.");
 
   // Handle config file loading error
   receive('configError', (errorMessage) => {
     console.error("Config loading error:", errorMessage);
   });
+});
 
   inputBox.addEventListener('keydown', async (event) => {
     if (event.key === 'Enter') {

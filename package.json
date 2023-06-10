@@ -47,7 +47,11 @@
       "index.html",
       "renderer.js",
       "preload.js",
+      "api.cfg",
       "gpttray.png"
+    ],
+    "extraFiles": [
+      "./api.cfg"
     ],
     "nsis": {
       "oneClick": false,
