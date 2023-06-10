@@ -2,26 +2,56 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Transparent Window Example</title>
+  <title>GPT Web Interface</title>
   <style>
     body {
-      background-color: transparent;
-
+    background-color: transparent;
     }
 
-    input {
-      border-radius: 8px;
-      width: 550px;
-      height: 30px;
-      font-size: 22px;
-      border: none;
-      outline: none;
-      background-color: rgb(226, 226, 226);
-      padding: 12px;
-    }
+    #container {
+  position: fixed;
+  left: 50%;
+  bottom: 20vh;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+input[type="text"] {
+  width: 600px;
+  padding: 10px;
+  font-size: 18px;
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #333333;
+  border: 1px solid #adadad;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#response {
+  margin-bottom: 15px;
+  font-family: 'Courier New', Courier, monospace;
+  width: 600px;
+  min-height: 100px; /* Adjust the value as needed */
+  font-size: 18px;
+  padding: 10px;
+  color: #333333;
+  background-color: rgb(238, 238, 238);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
   </style>
 </head>
 <body>
-  <input type="text" id="userInput">
-</body>
-</html>
+    <div id="container">
+        <div id="response"></div>
+        <input type="text" id="prompt" placeholder="Ask away" autofocus>
+    </div>
+  <script src="renderer.js"></script>

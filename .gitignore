@@ -1,3 +1,4 @@
-
+node_modules
+.babelrc
 .env
-/node_modules
+/dist
