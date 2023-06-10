@@ -1,9 +1,22 @@
 const { app, BrowserWindow, Tray, globalShortcut, ipcMain, Menu } = require('electron');
 const path = require('path');
+const fs = require('fs');
 
 let mainWindow;
 let tray;
 
+// Get the path to the 'api.cfg' file relative to the executable file
+const configFile = path.join(__dirname, 'api.cfg');
+
+// Handle IPC message from renderer process
+ipcMain.on('loadConfig', (event) => {
+  try {
+    const fileContents = fs.readFileSync(configFile, 'utf-8');
+    event.reply('configLoaded', fileContents);
+  } catch (error) {
+    event.reply('configError', error.message);
+  }
+});
 function createWindow() {
   mainWindow = new BrowserWindow({
     icon: './gpt.ico',
