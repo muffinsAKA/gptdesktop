@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css" integrity="sha512-uf06llspW44/LZpHzHT6qBOIVODjWtv4MxCricRxkzvopAlSWnTf6hpZTFxuuZcuNE9CBQhqE0Seu1CoRk84nQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/firacode/6.2.0/fira_code.css" integrity="sha512-LaxQmGd9k/pW51CsEy2nLIlbUXCgsyvUEVT5fSguN2b2OBwHjMi2aiUdEEXSMg8Jvy+bCB01as61aNrHnL2DYQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <meta charset="UTF-8">
   <title>GPT Web Interface</title>
   <style>
@@ -22,36 +24,69 @@
 
 input[type="text"] {
   width: 600px;
-  padding: 10px;
-  font-size: 18px;
+  padding: 12px;
+  font-family: 'Fira Code', monospace;
+  font-weight: 300;
+  font-size: 15px;
   color: white;
-  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
   background-color: #333333;
-  border: 1px solid #adadad;
+  border: 0;
+  outline: 0;
   border-radius: 4px;
   box-sizing: border-box;
 }
 
 #response {
-  margin-bottom: 15px;
-  font-family: 'Courier New', Courier, monospace;
-  width: 600px;
-  min-height: 100px; /* Adjust the value as needed */
-  font-size: 18px;
-  padding: 10px;
-  color: #333333;
-  background-color: rgb(238, 238, 238);
+  font-family: 'Fira Code', monospace;
+  margin-bottom: 10px;
+  line-height: 1.7;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: left;
+  width: 650px;
+  height: 100px;
+  max-height: 800px;
+  min-height: 100px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-bottom: 15px;
+  padding-top: 20px;
+  color: #ffffff;
+  background-color: #333333;
   border: 1px solid #ccc;
   border-radius: 4px;
-  box-sizing: border-box;
-  overflow-y: auto;
+  overflow-y:scroll;
+  outline: 0;
+  resize: none;
+  transition: height 0.6s ease;
+}
+
+
+#response::-webkit-scrollbar {
+  width: 10px; /* Width of the scrollbar */
+}
+
+#response::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Background color of the track */
+}
+
+#response::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the scrollbar thumb */
+  border-radius: 5px; /* Rounded corners of the thumb */
+}
+
+#response::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Color of the thumb on hover */
 }
 
   </style>
 </head>
 <body>
     <div id="container">
-        <div id="response"></div>
+        <textarea readonly wrap="soft" id="response"></textarea>
         <input type="text" id="prompt" placeholder="Ask away" autofocus>
     </div>
+ 
   <script src="renderer.js"></script>
+

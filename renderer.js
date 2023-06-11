@@ -50,7 +50,8 @@ receive('configLoaded', (fileContents) => {
       const message = result.choices[0].message;
       const content = message.content;
 
-      responseBox.textContent = content;
+      responseBox.value = content;
+      responseBox.style.height = `${responseBox.scrollHeight + 18}px`; 
     }
   });
 
