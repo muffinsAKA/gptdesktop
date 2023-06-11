@@ -27,8 +27,7 @@ window.api.ipcRenderer.on('ctrlSpacePressed', (event, uiVisible) => {
     responseBox.value = '';
     responseBox.style.display = 'none';
   } else {
-    // UI is hidden
-    // Do something else
+    responseBox.style.height = '100px';
   }
 });
 
