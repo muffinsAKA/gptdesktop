@@ -21,6 +21,19 @@ receive('configLoaded', (fileContents) => {
   });
 });
 
+window.api.ipcRenderer.on('ctrlSpacePressed', (event, uiVisible) => {
+  // Perform actions in response to Ctrl+Space key press
+  if (uiVisible) {
+    responseBox.value = '';
+    responseBox.style.display = 'none';
+  } else {
+    // UI is hidden
+    // Do something else
+  }
+});
+
+
+
   inputBox.addEventListener('keydown', async (event) => {
     if (event.key === 'Enter') {
       const prompt = inputBox.value;
@@ -50,6 +63,7 @@ receive('configLoaded', (fileContents) => {
       const message = result.choices[0].message;
       const content = message.content;
 
+      responseBox.style.display = 'block';
       responseBox.value = content;
       responseBox.style.height = `${responseBox.scrollHeight + 18}px`; 
     }

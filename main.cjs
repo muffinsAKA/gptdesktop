@@ -27,11 +27,12 @@ function createWindow() {
     show: false,
     // Other window configuration options
     webPreferences: {
+      preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: false,
       contextIsolation: true,
-      preload: path.join(__dirname, 'preload.js'),
-    }
-  });
+
+    }    
+    });
 
   mainWindow.loadFile('index.html');
 
@@ -61,7 +62,13 @@ app.on('ready', () => {
     }
 
     uiVisible = !uiVisible; // Toggle the visibility
+
+      // Send a message to the renderer process
+  mainWindow.webContents.send('ctrlSpacePressed', uiVisible);
+  
   });
+
+
 
   // Create the context menu for the tray
   const trayMenu = Menu.buildFromTemplate([
